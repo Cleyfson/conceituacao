@@ -26,4 +26,9 @@ class ProfileService
     {
         return $this->profileRepository->create($data);
     }
+
+    public function update(int $id, array $data): Profile
+    {
+        return $this->profileRepository->update($id, $data);
+    }
 }

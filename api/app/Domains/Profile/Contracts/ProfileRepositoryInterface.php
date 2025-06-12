@@ -10,4 +10,5 @@ interface ProfileRepositoryInterface
     public function all(): Collection;
     public function findById(int $id): Profile;
     public function create(array $data): Profile;
+    public function update(int $id, array $data): Profile;
 }

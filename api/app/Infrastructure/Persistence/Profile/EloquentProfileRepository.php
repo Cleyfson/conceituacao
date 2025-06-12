@@ -22,4 +22,11 @@ class EloquentProfileRepository implements ProfileRepositoryInterface
     {
         return Profile::create($data);
     }
+
+    public function update(int $id, array $data): Profile
+    {
+        $profile = $this->findById($id);
+        $profile->update($data);
+        return $profile;
+    }
 }
