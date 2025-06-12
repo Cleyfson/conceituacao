@@ -31,5 +31,6 @@ Route::middleware('auth:api')->group(function () {
     Route::apiResource('users', UserController::class);
     Route::prefix('users/{user}')->group(function () {
         Route::post('profiles/attach', [UserController::class, 'attachProfiles']);
+        Route::post('profiles/detach', [UserController::class, 'detachProfiles']);
     });
 });

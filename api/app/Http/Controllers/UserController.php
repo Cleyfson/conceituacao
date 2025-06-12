@@ -110,4 +110,15 @@ class UserController extends Controller
             ], 500);
         }
     }
+
+    public function detachProfiles(AttachProfilesRequest $request, int $userId): JsonResponse
+    {
+        try {
+            $this->userService->detachProfiles($userId, $request->profiles);
+
+            return response()->json(['message' => 'Perfis desassociados com sucesso.']);
+        } catch (\Throwable $e) {
+            return response()->json(['message' => 'Erro ao desassociar perfis.', 'error' => $e->getMessage()], 500);
+        }
+    }
 }
