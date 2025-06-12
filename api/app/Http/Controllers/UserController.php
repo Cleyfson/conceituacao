@@ -64,9 +64,21 @@ class UserController extends Controller
         }
     }
 
-    public function update(Request $request, int $id): JsonResponse
+    public function update(UpdateUserRequest $request, int $id): JsonResponse
     {
-      return response()->json([]);
+        try {
+            $data = $this->userService->update($id, $request->validated());
+
+            return response()->json([
+                'message' => 'Usuário atualizado com sucesso.',
+                'data' => $data,
+            ]);
+        } catch (\Throwable $e) {
+            return response()->json([
+                'message' => 'Erro ao atualizar usuário.',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
     }
 
     public function destroy(int $id): JsonResponse

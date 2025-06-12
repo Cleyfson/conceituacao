@@ -22,4 +22,11 @@ class EloquentUserRepository implements UserRepositoryInterface
     {
         return User::findOrFail($id);
     }
+    
+    public function update(int $id, array $data): User
+    {
+        $user = User::findOrFail($id);
+        $user->update($data);
+        return $user;
+    }
 }

@@ -33,4 +33,9 @@ class UserService
     {
         return $this->userRepository->findById($id);
     }
+
+    public function update(int $id, array $data)
+    {
+        return $this->userRepository->update($id, $data);
+    }
 }
