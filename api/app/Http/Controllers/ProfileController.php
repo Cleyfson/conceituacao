@@ -47,9 +47,21 @@ class ProfileController extends Controller
         }
     }
 
-    public function store(Request $request): JsonResponse
+    public function store(StoreProfileRequest $request): JsonResponse
     {
-      return response()->json([]);
+        try {
+            $data = $this->profileService->create($request->validated());
+
+            return response()->json([
+                'message' => 'Perfil criado com sucesso.',
+                'data' => $data,
+            ], 201);
+        } catch (\Throwable $e) {
+            return response()->json([
+                'message' => 'Erro ao criar perfil.',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
     }
 
     public function update(Request $request, int $id): JsonResponse

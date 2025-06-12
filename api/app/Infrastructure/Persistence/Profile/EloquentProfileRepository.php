@@ -17,4 +17,9 @@ class EloquentProfileRepository implements ProfileRepositoryInterface
     {
         return Profile::findOrFail($id);
     }
+
+    public function create(array $data): Profile
+    {
+        return Profile::create($data);
+    }
 }
