@@ -51,6 +51,19 @@ class ProfileRepositoryMock implements ProfileRepositoryInterface
         throw new \Exception("Profile not found");
     }
 
+    public function delete(int $id): void
+    {
+        foreach ($this->profiles as $i => $profile) {
+            if ($profile->id === $id) {
+                unset($this->profiles[$i]);
+                $this->profiles = array_values($this->profiles);
+                return;
+            }
+        }
+
+        throw new \Exception("Profile not found");
+    }
+
     public function clear(): void
     {
         $this->profiles = [];

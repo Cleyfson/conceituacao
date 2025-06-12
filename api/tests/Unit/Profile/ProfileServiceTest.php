@@ -64,6 +64,19 @@ class ProfileServiceTest extends TestCase
         $this->assertEquals($profile->id, $updated->id);
     }
 
+    public function test_delete_profile()
+    {
+        $profile = $this->profileService->create([
+            'name' => 'David',
+        ]);
+
+        $this->profileService->delete($profile->id);
+
+        $this->expectException(\Exception::class);
+        $this->profileService->getById($profile->id);
+    }
+
+
     protected function tearDown(): void
     {
         $this->profileRepository->clear();
