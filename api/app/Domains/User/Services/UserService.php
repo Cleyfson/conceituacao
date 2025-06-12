@@ -5,7 +5,7 @@ namespace App\Domains\User\Services;
 use App\Domains\User\Contracts\UserRepositoryInterface;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Hash;
-use App\Models\User;
+use App\Domains\User\Entities\User;
 
 class UserService
 {
@@ -18,7 +18,7 @@ class UserService
         return $this->userRepository->all();
     }
 
-    public function create(array $data): array
+    public function create(array $data): User
     {
         $user = $this->userRepository->create([
             'name'     => $data['name'],
@@ -26,12 +26,10 @@ class UserService
             'password' => Hash::make($data['password']),
         ]);
 
-        return [
-            'user' => $user,
-        ];
+        return $user;
     }
 
-    public function getById(int $id)
+    public function getById(int $id): User
     {
         return $this->userRepository->findById($id);
     }
