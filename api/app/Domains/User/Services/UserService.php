@@ -30,4 +30,9 @@ class UserService
             'user' => $user,
         ];
     }
+
+    public function getById(int $id)
+    {
+        return $this->userRepository->findById($id);
+    }
 }

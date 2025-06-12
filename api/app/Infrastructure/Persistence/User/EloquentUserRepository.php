@@ -17,4 +17,9 @@ class EloquentUserRepository implements UserRepositoryInterface
     {
         return User::create($data);
     }
+
+    public function findById(int $id): User
+    {
+        return User::findOrFail($id);
+    }
 }

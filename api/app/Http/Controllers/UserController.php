@@ -32,7 +32,19 @@ class UserController extends Controller
 
     public function show(int $id): JsonResponse
     {
-      return response()->json([]);
+      try {
+          $user = $this->userService->getById($id);
+
+          return response()->json([
+              'message' => 'Usuário recuperado com sucesso.',
+              'data' => $user,
+          ]);
+      } catch (\Throwable $e) {
+          return response()->json([
+              'message' => 'Erro ao recuperar usuário.',
+              'error' => $e->getMessage(),
+          ], 404);
+      }
     }
 
     public function store(Request $request): JsonResponse
