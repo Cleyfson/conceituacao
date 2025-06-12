@@ -4,6 +4,7 @@ namespace Tests\Mocks;
 
 use App\Domains\User\Entities\User;
 use App\Domains\User\Contracts\UserRepositoryInterface;
+use Illuminate\Database\Eloquent\Collection;
 
 class UserRepositoryMock implements UserRepositoryInterface
 {
@@ -18,6 +19,11 @@ class UserRepositoryMock implements UserRepositoryInterface
         $this->users[] = $user;
 
         return $user;
+    }
+
+    public function all(): Collection
+    {
+        return new Collection($this->users);
     }
 
     public function getUsers(): array
