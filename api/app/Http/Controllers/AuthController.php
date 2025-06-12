@@ -49,4 +49,20 @@ class AuthController extends Controller
             ], 401);
         }
     }
+
+    public function logout(): JsonResponse
+    {
+        try {
+            $this->authService->logout();
+
+            return response()->json([
+                'message' => 'Logout realizado com sucesso.',
+            ]);
+        } catch (\Throwable $e) {
+            return response()->json([
+                'message' => 'Erro ao realizar logout.',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
+    }
 }
