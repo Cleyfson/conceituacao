@@ -42,6 +42,16 @@ class ProfileServiceTest extends TestCase
         $this->assertEquals('Teste', $found->name);
     }
 
+    public function test_create_new_profile()
+    {
+        $profile = $this->profileService->create([
+            'name' => 'Subscriber',
+        ]);
+
+        $this->assertInstanceOf(Profile::class, $profile);
+        $this->assertEquals('Subscriber', $profile->name);
+    }
+
     protected function tearDown(): void
     {
         $this->profileRepository->clear();
