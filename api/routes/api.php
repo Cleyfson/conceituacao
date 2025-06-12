@@ -26,6 +26,10 @@ Route::prefix('auth')->group(function () {
 Route::middleware('auth:api')->group(function () {
     Route::post('auth/logout', [AuthController::class, 'logout']);
 
-    Route::apiResource('users', UserController::class);
     Route::apiResource('profiles', ProfileController::class);
+    
+    Route::apiResource('users', UserController::class);
+    Route::prefix('users/{user}')->group(function () {
+        Route::post('profiles/attach', [UserController::class, 'attachProfiles']);
+    });
 });

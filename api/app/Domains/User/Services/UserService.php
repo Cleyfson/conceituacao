@@ -43,4 +43,10 @@ class UserService
     {
         $this->userRepository->delete($id);
     }
+
+    public function attachProfiles(int $userId, array $profileIds): void
+    {
+        $user = $this->userRepository->findById($userId);
+        $user->profiles()->attach($profileIds);
+    }
 }

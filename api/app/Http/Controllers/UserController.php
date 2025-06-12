@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Domains\User\Services\UserService;
 use App\Http\Requests\User\StoreUserRequest;
 use App\Http\Requests\User\UpdateUserRequest;
+use App\Http\Requests\User\AttachProfilesRequest;
 use Illuminate\Http\JsonResponse;
 
 class UserController extends Controller
@@ -91,6 +92,20 @@ class UserController extends Controller
         } catch (\Throwable $e) {
             return response()->json([
                 'message' => 'Erro ao deletar usuário.',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
+    }
+
+    public function attachProfiles(AttachProfilesRequest $request, int $userId): JsonResponse
+    {
+        try {
+            $this->userService->attachProfiles($userId, $request->profiles);
+
+            return response()->json(['message' => 'Perfis associados com sucesso.']);
+        } catch (\Throwable $e) {
+            return response()->json([
+                'message' => 'Erro ao associar perfis.',
                 'error' => $e->getMessage(),
             ], 500);
         }
