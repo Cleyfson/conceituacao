@@ -32,7 +32,19 @@ class ProfileController extends Controller
 
     public function show(int $id): JsonResponse
     {
-      return response()->json([]);
+        try {
+            $profile = $this->profileService->getById($id);
+
+            return response()->json([
+                'message' => 'Perfil recuperado com sucesso.',
+                'data' => $profile,
+            ]);
+        } catch (\Throwable $e) {
+            return response()->json([
+                'message' => 'Erro ao recuperar perfil.',
+                'error' => $e->getMessage(),
+            ], 404);
+        }
     }
 
     public function store(Request $request): JsonResponse

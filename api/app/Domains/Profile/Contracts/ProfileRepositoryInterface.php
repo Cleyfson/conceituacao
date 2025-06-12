@@ -8,4 +8,5 @@ use App\Domains\Profile\Entities\Profile;
 interface ProfileRepositoryInterface
 {
     public function all(): Collection;
+    public function findById(int $id): Profile;
 }

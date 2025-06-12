@@ -12,4 +12,9 @@ class EloquentProfileRepository implements ProfileRepositoryInterface
     {
         return Profile::all();
     }
+
+    public function findById(int $id): Profile
+    {
+        return Profile::findOrFail($id);
+    }
 }

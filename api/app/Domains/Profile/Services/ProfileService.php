@@ -17,6 +17,11 @@ class ProfileService
         return $this->profileRepository->all();
     }
 
+    public function getById(int $id): Profile
+    {
+        return $this->profileRepository->findById($id);
+    }
+
     public function create(array $data): Profile
     {
         return $this->profileRepository->create($data);
