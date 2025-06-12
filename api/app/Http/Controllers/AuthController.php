@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 
 use App\Domains\Auth\Services\AuthService;
 use App\Http\Requests\Auth\RegisterRequest;
+use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Http\JsonResponse;
 
 class AuthController extends Controller
@@ -27,6 +28,25 @@ class AuthController extends Controller
                 'message' => 'Erro ao registrar usuário.',
                 'error' => $e->getMessage(),
             ], 500);
+        }
+    }
+
+    public function login(LoginRequest $request): JsonResponse
+    {
+        try {
+            $credentials = $request->only(['email', 'password']);
+
+            $data = $this->authService->login($credentials);
+
+            return response()->json([
+                'message' => 'Login realizado com sucesso.',
+                'data' => $data,
+            ]);
+        } catch (\Throwable $e) {
+            return response()->json([
+                'message' => 'Erro ao realizar login.',
+                'error' => $e->getMessage(),
+            ], 401);
         }
     }
 }

@@ -7,7 +7,7 @@ use App\Domains\User\Entities\User;
 use Tests\Mocks\UserRepositoryMock;
 use Tests\TestCase;
 
-class UserServiceTest extends TestCase
+class AuthServiceTest extends TestCase
 {
     private UserRepositoryMock $userRepositoryMock;
     private UserRegisterUseCase $UserRegisterUseCase;

@@ -27,4 +27,16 @@ class AuthService
             'token' => $token,
         ];
     }
+
+    public function login(array $credentials): array
+    {
+        if (!$token = Auth::attempt($credentials)) {
+            throw new \Exception('Credenciais inválidas');
+        }
+
+        return [
+            'user' => Auth::user(),
+            'token' => $token,
+        ];
+    }
 }
