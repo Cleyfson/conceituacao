@@ -40,10 +40,23 @@ class UserServiceTest extends TestCase
             'password' => 'secret',
         ]);
 
-        $found = $this->userService->getById($user['user']->id);
+        $found = $this->userService->getById($user->id);
 
-        $this->assertEquals($user['user']->id, $found->id);
+        $this->assertEquals($user->id, $found->id);
         $this->assertEquals('Charlie', $found->name);
+    }
+
+    public function test_update_user()
+    {
+        $user = $this->userService->create([
+            'name' => 'David',
+            'email' => 'david@example.com',
+            'password' => 'secret',
+        ]);
+
+        $updated = $this->userService->update($user->id, ['name' => 'Dave']);
+
+        $this->assertEquals('Dave', $updated->name);
     }
 
     protected function tearDown(): void

@@ -37,6 +37,21 @@ class UserRepositoryMock implements UserRepositoryInterface
         throw new \Exception("User not found");
     }
 
+    public function update(int $id, array $data): User
+    {
+        foreach ($this->users as &$user) {
+            if ($user->id === $id) {
+                foreach ($data as $key => $value) {
+                    $user->{$key} = $value;
+                }
+                return $user;
+            }
+        }
+
+        throw new \Exception("User not found");
+    }
+
+
     public function getUsers(): array
     {
         return $this->users;
