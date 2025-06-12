@@ -37,6 +37,20 @@ class ProfileRepositoryMock implements ProfileRepositoryInterface
         throw new \Exception("Profile not found");
     }
 
+    public function update(int $id, array $data): Profile
+    {
+        foreach ($this->profiles as &$profile) {
+            if ($profile->id === $id) {
+                foreach ($data as $key => $value) {
+                    $profile->{$key} = $value;
+                }
+                return $profile;
+            }
+        }
+
+        throw new \Exception("Profile not found");
+    }
+
     public function clear(): void
     {
         $this->profiles = [];

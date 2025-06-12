@@ -52,6 +52,18 @@ class ProfileServiceTest extends TestCase
         $this->assertEquals('Subscriber', $profile->name);
     }
 
+    public function test_update_profile()
+    {
+        $profile = $this->profileService->create([
+            'name' => 'David',
+        ]);
+
+        $updated = $this->profileService->update($profile->id, ['name' => 'Dave']);
+
+        $this->assertEquals('Dave', $updated->name);
+        $this->assertEquals($profile->id, $updated->id);
+    }
+
     protected function tearDown(): void
     {
         $this->profileRepository->clear();
