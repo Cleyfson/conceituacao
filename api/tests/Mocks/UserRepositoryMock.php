@@ -26,6 +26,17 @@ class UserRepositoryMock implements UserRepositoryInterface
         return new Collection($this->users);
     }
 
+    public function findById(int $id): User
+    {
+        foreach ($this->users as $user) {
+            if ($user->id === $id) {
+                return $user;
+            }
+        }
+
+        throw new \Exception("User not found");
+    }
+
     public function getUsers(): array
     {
         return $this->users;
