@@ -30,6 +30,18 @@ class ProfileServiceTest extends TestCase
         $this->assertEquals('Editor', $profiles[0]->name);
     }
 
+    public function test_find_profile_by_id()
+    {
+        $profile = $this->profileService->create([
+            'name' => 'Teste',
+        ]);
+
+        $found = $this->profileService->getById($profile->id);
+
+        $this->assertEquals($profile->id, $found->id);
+        $this->assertEquals('Teste', $found->name);
+    }
+
     protected function tearDown(): void
     {
         $this->profileRepository->clear();

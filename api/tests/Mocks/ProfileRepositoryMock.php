@@ -26,6 +26,17 @@ class ProfileRepositoryMock implements ProfileRepositoryInterface
         return new Collection($this->profiles);
     }
 
+    public function findById(int $id): Profile
+    {
+        foreach ($this->profiles as $profile) {
+            if ($profile->id === $id) {
+                return $profile;
+            }
+        }
+
+        throw new \Exception("Profile not found");
+    }
+
     public function clear(): void
     {
         $this->profiles = [];
