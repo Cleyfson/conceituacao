@@ -59,6 +59,20 @@ class UserServiceTest extends TestCase
         $this->assertEquals('Dave', $updated->name);
     }
 
+    public function test_delete_user()
+    {
+        $user = $this->userService->create([
+            'name' => 'Eve',
+            'email' => 'eve@example.com',
+            'password' => 'secret',
+        ]);
+
+        $this->userService->delete($user->id);
+
+        $this->expectException(\Exception::class);
+        $this->userService->getById($user->id);
+    }
+
     protected function tearDown(): void
     {
         $this->userRepository->clear();

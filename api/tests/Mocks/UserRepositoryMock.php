@@ -51,6 +51,18 @@ class UserRepositoryMock implements UserRepositoryInterface
         throw new \Exception("User not found");
     }
 
+    public function delete(int $id): void
+    {
+        foreach ($this->users as $i => $user) {
+            if ($user->id === $id) {
+                unset($this->users[$i]);
+                $this->users = array_values($this->users);
+                return;
+            }
+        }
+
+        throw new \Exception("User not found");
+    }
 
     public function getUsers(): array
     {
