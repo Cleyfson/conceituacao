@@ -55,4 +55,10 @@ class UserService
         $user = $this->userRepository->findById($userId);
         $user->profiles()->detach($profileIds);
     }
+
+    public function getUserProfiles(int $userId): \Illuminate\Support\Collection
+    {
+        $user = $this->userRepository->findById($userId);
+        return $user->profiles;
+    }
 }

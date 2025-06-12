@@ -121,4 +121,15 @@ class UserController extends Controller
             return response()->json(['message' => 'Erro ao desassociar perfis.', 'error' => $e->getMessage()], 500);
         }
     }
+
+    public function getProfiles(int $userId): JsonResponse
+    {
+        try {
+            $profiles = $this->userService->getUserProfiles($userId);
+
+            return response()->json(['message' => 'Perfis do usuário recuperados com sucesso.', 'data' => $profiles]);
+        } catch (\Throwable $e) {
+            return response()->json(['message' => 'Erro ao recuperar perfis do usuário.', 'error' => $e->getMessage()], 500);
+        }
+    }
 }
