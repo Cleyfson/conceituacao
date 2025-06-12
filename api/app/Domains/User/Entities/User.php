@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Tymon\JWTAuth\Contracts\JWTSubject;
+use App\Domains\Profile\Entities\Profile;
 
 class User extends Authenticatable implements JWTSubject
 {
@@ -63,5 +64,10 @@ class User extends Authenticatable implements JWTSubject
     public function getJWTCustomClaims()
     {
         return [];
+    }
+
+    public function profiles(): BelongsToMany
+    {
+        return $this->belongsToMany(Profile::class, 'profile_user');
     }
 }
