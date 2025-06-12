@@ -1,0 +1,11 @@
+<?php
+
+namespace App\Domains\Profile\Contracts;
+
+use Illuminate\Database\Eloquent\Collection;
+use App\Domains\Profile\Entities\Profile;
+
+interface ProfileRepositoryInterface
+{
+    public function all(): Collection;
+}

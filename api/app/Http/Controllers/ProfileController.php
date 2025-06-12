@@ -1,0 +1,52 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Http\Controllers\Controller;
+use App\Domains\Profile\Services\ProfileService;
+use App\Http\Requests\Profile\StoreProfileRequest;
+use App\Http\Requests\Profile\UpdateProfileRequest;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+
+class ProfileController extends Controller
+{
+    public function __construct(private ProfileService $profileService) {}
+
+    public function index(): JsonResponse
+    {
+        try {
+            $profiles = $this->profileService->getAll();
+
+            return response()->json([
+                'message' => 'Lista de perfis recuperada com sucesso.',
+                'data' => $profiles,
+            ]);
+        } catch (\Throwable $e) {
+            return response()->json([
+                'message' => 'Erro ao recuperar lista de perfis.',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
+    }
+
+    public function show(int $id): JsonResponse
+    {
+      return response()->json([]);
+    }
+
+    public function store(Request $request): JsonResponse
+    {
+      return response()->json([]);
+    }
+
+    public function update(Request $request, int $id): JsonResponse
+    {
+      return response()->json([]);
+    }
+
+    public function destroy(int $id): JsonResponse
+    {
+      return response()->json([]);
+    }
+}
