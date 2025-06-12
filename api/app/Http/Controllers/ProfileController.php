@@ -83,6 +83,17 @@ class ProfileController extends Controller
 
     public function destroy(int $id): JsonResponse
     {
-      return response()->json([]);
+        try {
+            $this->profileService->delete($id);
+
+            return response()->json([
+                'message' => 'Perfil deletado com sucesso.',
+            ]);
+        } catch (\Throwable $e) {
+            return response()->json([
+                'message' => 'Erro ao deletar perfil.',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
     }
 }

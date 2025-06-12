@@ -29,4 +29,10 @@ class EloquentProfileRepository implements ProfileRepositoryInterface
         $profile->update($data);
         return $profile;
     }
+
+    public function delete(int $id): void
+    {
+        $profile = $this->findById($id);
+        $profile->delete();
+    }
 }

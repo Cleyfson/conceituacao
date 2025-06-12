@@ -11,4 +11,5 @@ interface ProfileRepositoryInterface
     public function findById(int $id): Profile;
     public function create(array $data): Profile;
     public function update(int $id, array $data): Profile;
+    public function delete(int $id): void;
 }
