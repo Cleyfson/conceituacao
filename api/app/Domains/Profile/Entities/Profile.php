@@ -2,8 +2,8 @@
 
 namespace App\Domains\Profile\Entities;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Model;
 use App\Domains\User\Entities\User;
 
 class Profile extends Model
