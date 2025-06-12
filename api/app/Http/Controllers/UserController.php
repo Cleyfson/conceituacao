@@ -83,6 +83,17 @@ class UserController extends Controller
 
     public function destroy(int $id): JsonResponse
     {
-      return response()->json([]);
+        try {
+            $this->userService->delete($id);
+
+            return response()->json([
+                'message' => 'Usuário deletado com sucesso.',
+            ]);
+        } catch (\Throwable $e) {
+            return response()->json([
+                'message' => 'Erro ao deletar usuário.',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
     }
 }

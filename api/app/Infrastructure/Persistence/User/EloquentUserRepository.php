@@ -29,4 +29,10 @@ class EloquentUserRepository implements UserRepositoryInterface
         $user->update($data);
         return $user;
     }
+     
+    public function delete(int $id): void
+    {
+        $user = User::findOrFail($id);
+        $user->delete();
+    }
 }
