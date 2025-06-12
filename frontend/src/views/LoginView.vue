@@ -64,7 +64,7 @@ const schema = yup.object({
 const handleLogin = async (credentials, { setErrors }) => {
   try {
     await authStore.login(credentials);
-    router.push({ name: 'movies' });
+    router.push({ name: 'users' });
   } catch (error) {
     if (error.response?.status === 401) {
       notifyError('Credenciais inválidas. Verifique seu email e senha.');
