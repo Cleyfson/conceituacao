@@ -25,13 +25,16 @@ Route::prefix('auth')->group(function () {
 
 Route::middleware('auth:api')->group(function () {
     Route::post('auth/logout', [AuthController::class, 'logout']);
-
-    Route::apiResource('profiles', ProfileController::class);
     
     Route::apiResource('users', UserController::class);
-    Route::prefix('users/{user}')->group(function () {
-        Route::post('profiles/attach', [UserController::class, 'attachProfiles']);
-        Route::post('profiles/detach', [UserController::class, 'detachProfiles']);
-        Route::get('profiles', [UserController::class, 'getProfiles']);
+    Route::get('profiles', [UserController::class, 'getProfiles']);
+
+    Route::middleware('is.admin')->group(function () {
+        Route::apiResource('profiles', ProfileController::class);
+
+        Route::prefix('users/{user}')->group(function () {
+            Route::post('profiles/attach', [UserController::class, 'attachProfiles']);
+            Route::post('profiles/detach', [UserController::class, 'detachProfiles']);
+        });
     });
 });
