@@ -57,6 +57,7 @@ class UserServiceTest extends TestCase
         $updated = $this->userService->update($user->id, ['name' => 'Dave']);
 
         $this->assertEquals('Dave', $updated->name);
+        $this->assertEquals($user->id, $updated->id);
     }
 
     public function test_delete_user()
