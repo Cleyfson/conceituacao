@@ -28,6 +28,12 @@ const router = createRouter({
         next({ name: 'login' });
       },
     },
+    {
+      path: '/users',
+      name: 'users',
+      component: () => import('../views/UserView.vue'),
+      meta: { requiresAuth: true },
+    },
   ],
 })
 
