@@ -8,7 +8,8 @@
       <div class="flex justify-end items-center px-1 py-2">
         <button 
           @click="openModal"
-          class="px-4 py-2 bg-indigo-700 hover:bg-indigo-500 rounded-md text-sm text-white flex items-center gap-2"
+          :disabled="!authStore.isAdmin"
+          class="px-4 py-2 bg-indigo-700 hover:bg-indigo-500 rounded-md text-sm text-white flex items-center gap-2 disabled:bg-blue-300 disabled:cursor-not-allowed"
         >
           <h1>Adicionar Usuário</h1>
         </button>
@@ -27,6 +28,9 @@
 <script setup>
 import { ref } from 'vue'
 import AddOrEditUserModal from './UserAddOrEditModal.vue'
+import { useAuthStore } from '@/stores/auth'
+
+const authStore = useAuthStore();
 
 const showAddUserModal = ref(false)
 

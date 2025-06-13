@@ -6,11 +6,14 @@ import { useLoading } from '@/composables/useLoading';
 export const useAuthStore = defineStore('auth', {
   state: () => ({
     token: localStorage.getItem('access_token') || null,
-    user: null,
+    user: JSON.parse(localStorage.getItem('user')) || null,
   }),
 
   getters: {
     isAuthenticated: (state) => !!state.token,
+    isAdmin: (state) => {
+      return state.user?.profiles?.some(profile => profile.name === 'Administrador') || false;
+    },
   },
 
   actions: {
@@ -22,6 +25,11 @@ export const useAuthStore = defineStore('auth', {
     clearToken() {
       this.token = null;
       localStorage.removeItem('access_token');
+    },
+
+    clearUser() {
+      this.user = null;
+      localStorage.removeItem('user');
     },
 
     async login(credentials) {
@@ -36,6 +44,7 @@ export const useAuthStore = defineStore('auth', {
 
         this.setToken(response.data.data.token);
         this.user = response.data.data.user;
+        localStorage.setItem('user', JSON.stringify(this.user));
 
         return response.data;
       } catch (error) {
@@ -77,6 +86,7 @@ export const useAuthStore = defineStore('auth', {
         await api.post('/auth/logout');
 
         this.clearToken();
+        this.clearUser();
       } catch (error) {
         notifyError('Erro ao deslogar:' + (error.response?.data?.message || error.message));
       } finally {
