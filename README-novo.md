@@ -179,5 +179,10 @@ Para visualizar os perfils, clique em "perfis" na barra superior.
 |---------------|------------------|
 | ![Tela de perfis](frontend/src/assets/img/perfis.png) | ![Tela de perfis ações (hover)](frontend/src/assets/img/perfis-detalhes.png) |
 
+Para gerenciar os perfis de um usuário, selecione e clique em um dos usuários listados.
+
+| Tela de usuario | Tela de detalhes do usuario (visao do admin) | Tela de detalhes do usuario (visao não admin) |
+|---------------|------------------|------------------|
+| ![Tela de perfis](frontend/src/assets/img/selecionar-usuario.png) | ![Tela de perfis ações (hover)](frontend/src/assets/img/gerenciar-perfil-admin.png) | ![Tela de perfis ações (hover)](frontend/src/assets/img/gerenciar-perfil-nadmin.png) |
 
 Usuários que não são administradores podem apenas visualizar a lista e os detalhes dos usuários. Eles não têm acesso à lista de perfis, nem podem editar, excluir ou criar usuários. Para testar essas funcionalidades, é necessário estar logado com um usuário administrador.
