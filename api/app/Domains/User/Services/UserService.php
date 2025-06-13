@@ -47,7 +47,7 @@ class UserService
     public function attachProfiles(int $userId, array $profileIds): void
     {
         $user = $this->userRepository->findById($userId);
-        $user->profiles()->sync($profileIds);
+        $user->profiles()->attach($profileIds);
     }
 
     public function detachProfiles(int $userId, array $profileIds): void
