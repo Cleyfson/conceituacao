@@ -27,7 +27,7 @@ Route::middleware('auth:api')->group(function () {
     Route::post('auth/logout', [AuthController::class, 'logout']);
     
     Route::apiResource('users', UserController::class);
-    Route::get('profiles', [UserController::class, 'getProfiles']);
+    Route::get('users/{user}/profiles', [UserController::class, 'getProfiles']);
 
     Route::middleware('is.admin')->group(function () {
         Route::apiResource('profiles', ProfileController::class);

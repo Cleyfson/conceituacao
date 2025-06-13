@@ -34,8 +34,11 @@ class AuthService
             throw new \Exception('Credenciais inválidas');
         }
 
+        $user = Auth::user();
+        $user->load('profiles'); 
+
         return [
-            'user' => Auth::user(),
+            'user' => $user,
             'token' => $token,
         ];
     }
