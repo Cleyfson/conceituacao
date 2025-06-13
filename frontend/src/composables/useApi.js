@@ -28,6 +28,7 @@ export function useApi() {
       if (error.response?.status === 401) {
         console.warn('Token expirado ou inválido. Realizando logout automático.');
         authStore.clearToken();
+        authStore.clearUser();
         router.push({ name: 'login' });
       }
 
