@@ -6,6 +6,7 @@ import { useLoading } from '@/composables/useLoading';
 export const useAuthStore = defineStore('auth', {
   state: () => ({
     token: localStorage.getItem('access_token') || null,
+    user: null,
   }),
 
   getters: {
@@ -32,7 +33,9 @@ export const useAuthStore = defineStore('auth', {
 
       try {
         const response = await api.post('/auth/login', credentials);
-        this.setToken(response.data.access_token);
+
+        this.setToken(response.data.data.token);
+        this.user = response.data.data.user;
 
         return response.data;
       } catch (error) {
