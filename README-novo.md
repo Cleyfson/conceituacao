@@ -79,10 +79,10 @@ docker-compose up --build -d
 
 Isso vai iniciar os seguintes containers:
 
-Backend (laravel_app)
-Frontend (vue_frontend)
-Banco de Dados (laravel_db)
-Webserver (laravel_webserver)
+- Backend (`laravel_app`)
+- Frontend (`vue_frontend`)
+- Banco de Dados (`laravel_db`)
+- Webserver (`laravel_webserver`)
 
 ## 4. Configurando aplicação
 
@@ -94,7 +94,7 @@ docker exec laravel_app php artisan jwt:secret
 docker exec laravel_app php artisan migrate --seed
 ```
 
-## 6. CRUD de User
+## 6. Estrutura
 
 A API foi construída seguindo os princípios de Domain-Driven Design (DDD), que organiza o projeto em camadas bem definidas com foco na separação de responsabilidades. A estrutura está centralizada no diretório api/app/, distribuída principalmente entre as camadas:
 
@@ -146,7 +146,7 @@ Frontend (Vue.js): http://localhost:5173
 
 ## Testes automatizados
 
-Para rodar os testes automatizados execute o seguinte comando no root do projeto
+Para rodar os testes automatizados execute o seguintes comandos no root do projeto
 ```bash
 docker exec laravel_app php artisan test
 docker exec vue_frontend npm run test:unit
