@@ -3,6 +3,7 @@
 namespace App\Http\Requests\User;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateUserRequest extends FormRequest
 {
@@ -15,7 +16,7 @@ class UpdateUserRequest extends FormRequest
     {
        return [
             'name' => ['sometimes', 'string', 'max:255'],
-            'email' => ['sometimes', 'email', 'unique:users,email'],
+            'email' => ['sometimes', 'email', Rule::unique('users', 'email')->ignore($this->user)],
             'password' => ['sometimes', 'string', 'min:6'],
         ];
     }
